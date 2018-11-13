@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <!--修改自己的MySQL驱动位置-->
+    <!--!!!!!!!!!!!!!!!!!!!!!!!需要修改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <classPathEntry location="C:/work/repo/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar"/>
+
+    <context id="mybatis" targetRuntime="MyBatis3">
+        <!-- 防止生成的代码中有很多注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--!!!!!!!!!!!!!!!!!!!!!!!需要修改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm"
+                        userId="root"
+                        password="admin">
+        </jdbcConnection>
+
+        <!--Java类型解析器不应该强制型对象字段BigDecimal的使用，此功能是为了使数据库DECIMAL和NUMERIC列容易处理-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <!--!!!!!!!!!!!!!!!!!!!!!!!需要修改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <javaModelGenerator targetPackage="com.xudaning.domain"
+                            targetProject="C:/work/objectApp/xudaning/SSM/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件存放位置-->
+        <!--!!!!!!!!!!!!!!!!!!!!!!!需要修改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="C:/work/objectApp/xudaning/SSM/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--生成mapperXML类存放位置-->
+        <!--!!!!!!!!!!!!!!!!!!!!!!!需要修改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xudaning.mapper"
+                             targetProject="C:/work/objectApp/xudaning/SSM/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--生成对应表及类名-->
+        <!--<table tableName="user" domainObjectName="User"/>-->
+        <table tableName="account" domainObjectName="Account"/>
+
+    </context>
+</generatorConfiguration>
