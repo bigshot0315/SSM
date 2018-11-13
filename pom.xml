@@ -22,6 +22,7 @@
         <log4j.version>2.7</log4j.version>
         <junit.version>4.12</junit.version>
         <driver.version>5.1.40</driver.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <dependencies>
@@ -36,6 +37,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
+            <!-- 排除commmons-logging -->
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -81,16 +89,23 @@
         </dependency>
         <!--Spring end-->
         <!--AOP start-->
-        <dependency>
+        <!--<dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--spring-aspects中已包含-->
+        <!--<dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.10</version>
+        </dependency>-->
+        <!--cglib-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.1_3</version>
         </dependency>
         <!--AOP end-->
         <!--json start-->
@@ -143,6 +158,39 @@
             <version>1.0.29</version>
         </dependency>
         <!--druid end-->
+
+        <!-- LOGGING begin -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <!--<scope>test</scope> -->
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>0.1.4</version>
+        </dependency>
+        <!-- LOGGING end -->
+
+        <!-- javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
